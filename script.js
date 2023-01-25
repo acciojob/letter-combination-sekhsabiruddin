@@ -9,9 +9,21 @@ function letterCombinations(input_digit) {
 		8:"tuv",
 		9:"wxyz"
 	}
-	let ans =obj[input_digit];
-	return ans;
-	
+	// let ans =obj[input_digit];
+	// return ans;
+	if(input_digit.length===0)return [];	
+	const ouput = [];
+	conat backtract =(current,i)=>{
+		if(i>input_digit.length-1){
+			ouput.push(current);
+			return ;
+		}
+		const letter = map[input_digit[i]];
+		for(const l of letter){
+			backtract(current+l,i+1);
+		}
+	}
+	return ouput;
 }
 
 module.exports = letterCombinations;

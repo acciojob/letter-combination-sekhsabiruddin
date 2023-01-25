@@ -12,14 +12,14 @@ function letterCombinations(input_digit) {
 	// let ans =obj[input_digit];
 	// return ans;
 	if(input_digit.length===0)return [];	
-	const ouput = [];
-	conat backtract =(current,i)=>{
+	let ouput = [];
+	let backtract =(current,i)=>{
 		if(i>input_digit.length-1){
 			ouput.push(current);
 			return ;
 		}
 		const letter = map[input_digit[i]];
-		for(const l of letter){
+		for(let l of letter){
 			backtract(current+l,i+1);
 		}
 	}

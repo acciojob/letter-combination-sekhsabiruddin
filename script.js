@@ -1,29 +1,38 @@
 function letterCombinations(input_digit) {
   //Complete the function
-	let obj ={
-		2:"abc",
-		3:"def",
-		5:"ghi",
-		6:"jkl",
-		7:"mno",
-		8:"tuv",
-		9:"wxyz"
-	}
-	// let ans =obj[input_digit];
-	// return ans;
-	if(input_digit.length===0)return [];	
-	let ouput = [];
-	let backtract =(current,i)=>{
-		if(i>input_digit.length-1){
-			ouput.push(current);
-			return ;
-		}
-		const letter = map[input_digit[i]];
-		for(let l of letter){
-			backtract(current+l,i+1);
-		}
-	}
-	return ouput;
+
+  var numberStringHt = {
+    2:"abc",
+    3:"def",
+    4:"ghi",
+    5:"jkl",
+    6:"mno",
+    7:"pqrs",
+    8:"tuv",
+    9:"wxyz",
+  }
+  var allCombinations = [];
+  for (let i = 0; i < input_digit.length; i++) {
+    let firstString = numberStringHt[input_digit[i]] || "";
+    let secondString = numberStringHt[input_digit[i + 1]] || "";
+    let thirdString = numberStringHt[input_digit[i + 2]] || "";
+    if (secondString) {
+      for (const firstLetter of firstString) {
+        for (let secondLetter of secondString) {
+          if (input_digit.length == 3) {
+            for (let thirdLetter of thirdString) {
+              allCombinations.push(firstLetter + secondLetter + thirdLetter)
+            }
+          } else {
+            allCombinations.push(firstLetter + secondLetter)
+          }
+        }
+      }
+    }
+  }
+  return allCombinations;
 }
+
+
 
 module.exports = letterCombinations;
